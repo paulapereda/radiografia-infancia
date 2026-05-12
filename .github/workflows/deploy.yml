@@ -19,4 +19,4 @@ jobs:
           destination-github-username: 'paulapereda'
           destination-repository-name: 'paulapereda-portfolio'
           target-directory: 'radiografia-infancia'
-          destination-branch: main
+          destination-branch: master
