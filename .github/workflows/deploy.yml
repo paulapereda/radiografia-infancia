@@ -10,14 +10,15 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Copy to portfolio repo
-        uses: cpina/github-action-push-to-another-repository@main
-        env:
-          API_TOKEN_GITHUB: ${{ secrets.PORTFOLIO_TOKEN }}
-        with:
-          source-directory: '.'
-          destination-github-username: 'paulapereda'
-          destination-repository-name: 'paulapereda-portfolio'
-          target-directory: 'radiografia-infancia'
-          target-branch: 'main'
-          create-target-branch-if-needed: 'true'
+      - name: Deploy to portfolio subfolder
+        run: |
+          git config --global user.email "github-actions@github.com"
+          git config --global user.name "GitHub Actions"
+          git clone https://x-access-token:${{ secrets.PORTFOLIO_TOKEN }}@github.com/paulapereda/paulapereda-portfolio.git /tmp/portfolio
+          rm -rf /tmp/portfolio/radiografia-infancia
+          mkdir -p /tmp/portfolio/radiografia-infancia
+          cp -r . /tmp/portfolio/radiografia-infancia/
+          cd /tmp/portfolio
+          git add .
+          git commit -m "Update radiografia-infancia" || echo "Nothing to commit"
+          git push
