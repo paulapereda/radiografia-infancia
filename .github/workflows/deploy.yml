@@ -17,6 +17,6 @@ jobs:
         with:
           source-directory: '.'
           destination-github-username: 'paulapereda'
-          destination-repository-name: 'portfolio'
+          destination-repository-name: 'paulapereda-portfolio'
           target-directory: 'radiografia-infancia'
           destination-branch: main
